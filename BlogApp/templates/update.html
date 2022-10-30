@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Blog here ! {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>Update</h1>
+        <br/><br/>
+        <div class="form-group">
+             <form method="POST">
+                 {% csrf_token %}
+                 {{ form.media }}
+                 {{ form.as_p }}
+                 <button class="btn btn-seconday">Update</button>
+             </form>
+        </div>
+    {% else %}
+         Not the correct User :(
+    {% endif %}
+{% else %}
+      Login/Register to make changes !
+{% endif %}
+
+{% endblock %}

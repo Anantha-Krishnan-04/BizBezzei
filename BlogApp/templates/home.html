@@ -1,0 +1,26 @@
+
+    <title>Biz Bezzie !</title>
+
+    {% extends 'base.html' %}
+
+    {% block content %}
+
+
+    <h1>Post</h1>
+    <ul>
+    {% for post in object_list %}
+          <li><a href="{% url 'article_details' post.pk %}"> {{ post.title }}</a>  - <a href="{% url 'category' post.category %}"></a> {{ post.category }} - {{ post.author.first_name }}
+                     {{ post.author.last_name }} - {{ post.author.email }} - {{ post.post_date }} <small>
+    {% if user.is_authenticated %}
+       {% if user.id == post.author.id %}
+          <a href="{% url 'update' post.pk %}">(Edit)</a>
+          <a href="{% url 'delete' post.pk %}">(Delete)</a>
+       {% endif %}
+    {% endif %}
+    </small> <br/>
+    {{ post.body|slice:":150"|safe }}</li>
+    {% endfor %}
+    </ul>
+    {% endblock %}
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Category Here</title>
+      {% extends 'base.html' %}
+
+      {% block title %} Category Blog {% endblock %}
+
+      {% block content %}
+
+      {% if user.is_authenticated %}
+        <h1> Category Blog ! </h1>
+        <br/><br/>
+        <div class="form-group">
+             <form method="POST">
+                 {% csrf_token %}
+                 {{ form.as_p }}
+                 <button class="btn btn-secondary">Category</button>
+             </form>
+        </div>
+      {% else %}
+         Register or Login now for exciting Blogs !
+      {% endif %}
+      {% endblock %}
+</head>
+<body>
+
+</body>
+</html>
